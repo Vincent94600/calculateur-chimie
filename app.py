@@ -1,0 +1,65 @@
+import streamlit as st
+
+# Configuration de la page pour mobile
+st.set_page_config(page_title="Calculateur Labo Eric", page_icon="🧪")
+
+st.title("🧪 Assistant de Labo")
+st.markdown("---")
+
+# Menu principal
+menu = ["Solides (Pesée)", "Liquides (Densité)", "Dilution (Mère/Fille)"]
+choix = st.sidebar.selectbox("Action à réaliser :", menu)
+
+# --- 1. MODULE SOLIDES ---
+if choix == "Solides (Pesée)":
+    st.header("⚖️ Préparation par pesée")
+    mode = st.radio("Donnée connue :", ["Concentration Massique (g/L)", "Concentration Molaire (mol/L)"])
+    
+    v = st.number_input("Volume final souhaité (L)", min_value=0.0, value=0.100, step=0.01, format="%.3f")
+    
+    if mode == "Concentration Massique (g/L)":
+        cm = st.number_input("Conc. massique visée (g/L)", min_value=0.0, value=10.0)
+        masse = cm * v
+    else:
+        c = st.number_input("Conc. molaire visée (mol/L)", min_value=0.0, value=0.1, format="%.4f")
+        m_mol = st.number_input("Masse molaire du solide (g/mol)", min_value=0.0, value=58.44)
+        masse = c * v * m_mol
+    
+    st.metric("Masse à peser", f"{masse:.4f} g")
+
+# --- 2. MODULE LIQUIDES ---
+elif choix == "Liquides (Densité)":
+    st.header("💧 Prélèvement de liquide pur")
+    st.info("Utilisé pour les acides concentrés ou solvants.")
+    
+    v_sol = st.number_input("Volume de solution à préparer (L)", min_value=0.0, value=0.100, step=0.01, format="%.3f")
+    purete = st.number_input("Pureté (ex: 37% -> taper 37)", min_value=0.0, max_value=100.0, value=98.0) / 100
+    d = st.number_input("Densité ou Masse volumique (g/mL)", min_value=0.0, value=1.84)
+    
+    mode_l = st.radio("Cible :", ["Massique (g/L)", "Molaire (mol/L)"])
+    
+    if mode_l == "Massique (g/L)":
+        target_cm = st.number_input("Conc. massique visée (g/L)", min_value=0.0, value=5.0)
+        v_prelev = (target_cm * v_sol) / (purete * d)
+    else:
+        target_c = st.number_input("Conc. molaire visée (mol/L)", min_value=0.0, value=0.1)
+        m_mol_l = st.number_input("Masse molaire (g/mol)", min_value=0.0, value=98.08)
+        v_prelev = (target_c * v_sol * m_mol_l) / (purete * d)
+    
+    st.metric("Volume à prélever", f"{v_prelev:.2f} mL")
+
+# --- 3. MODULE DILUTION ---
+elif choix == "Dilution (Mère/Fille)":
+    st.header("🧪 Dilution de solution")
+    unit = st.radio("Unité utilisée :", ["g/L", "mol/L"])
+    
+    c_mere = st.number_input(f"Concentration Mère ({unit})", min_value=0.0001, value=1.0)
+    c_fille = st.number_input(f"Concentration Fille ({unit})", min_value=0.0001, value=0.1)
+    v_fille = st.number_input("Volume Fille souhaité (mL)", min_value=0.0, value=100.0)
+    
+    if c_fille >= c_mere:
+        st.error("La fille doit être moins concentrée que la mère !")
+    else:
+        v_mere = (c_fille * v_fille) / c_mere
+        st.metric("Volume Mère à prélever", f"{v_mere:.2f} mL")
+        st.write(f"👉 Verser {v_mere:.2f} mL de mère et compléter jusqu'à {v_fille} mL.")
