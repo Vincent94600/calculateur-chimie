@@ -7,7 +7,7 @@ st.title("🧪 Assistant de Labo")
 st.markdown("---")
 
 # Menu principal
-menu = ["Solides (Pesée)", "Liquides (Densité)", "Dilution (Mère/Fille)"]
+menu = ["Solides", "Liquides", "Dilution (Mère/Fille)"]
 choix = st.sidebar.selectbox("Action à réaliser :", menu)
 
 # --- 1. MODULE SOLIDES ---
