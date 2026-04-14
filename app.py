@@ -11,7 +11,7 @@ menu = ["Solides", "Liquides", "Dilution (Mère/Fille)"]
 choix = st.sidebar.selectbox("Action à réaliser :", menu)
 
 # --- 1. MODULE SOLIDES ---
-if choix == "Solides (Pesée)":
+if choix == "Solides":
     st.header("⚖️ Préparation par pesée")
     mode = st.radio("Donnée connue :", ["Concentration Massique (g/L)", "Concentration Molaire (mol/L)"])
     
@@ -28,7 +28,7 @@ if choix == "Solides (Pesée)":
     st.metric("Masse à peser", f"{masse:.4f} g")
 
 # --- 2. MODULE LIQUIDES ---
-elif choix == "Liquides (Densité)":
+elif choix == "Liquides":
     st.header("💧 Prélèvement de liquide pur")
     st.info("Utilisé pour les acides concentrés ou solvants.")
     
