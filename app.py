@@ -59,9 +59,6 @@ elif choix == "Liquide":
     with col3:
         st.metric("Masse à prélever :", f"{m_prelev:.2f} g")
     
-    st.metric("Volume à prélever :" , f"{v_prelev:.2f} mL")
-    st.write("<h3>OU</h3>",unsafe_allow_html=True)
-    st.metric("Masse à prélever", f"{m_prelev:.2f} g")
 
 # --- 3. MODULE DILUTION ---
 elif choix == "Dilution (Mère/Fille)":
