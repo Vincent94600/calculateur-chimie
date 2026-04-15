@@ -48,7 +48,7 @@ elif choix == "Liquide":
         v_prelev = (target_c * v_sol * m_mol_l) / (purete * d)
         m_prelev = (target_c * v_sol * m_mol_l) / (purete)
 
-    col1, col2, col3 = st.columns([2,2,4], gap="small", vertical_alignment="center")
+    col1, col2, col3 = st.columns([2,2,6], gap="small", vertical_alignment="center")
 
     with col1:
         st.metric("Volume à prélever :" , f"{v_prelev:.2f} mL")
