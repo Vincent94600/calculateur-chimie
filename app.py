@@ -41,12 +41,15 @@ elif choix == "Liquide":
     if mode_l == "Concentration MASSIQUE (g/L)":
         target_cm = st.number_input("Concentration massique demandée (g/L)", min_value=0.0, value=5.0)
         v_prelev = (target_cm * v_sol) / (purete * d)
+        m_prelev = (target_cm *v_sol) / (purete)
     else:
         target_c = st.number_input("Concentration molaire demandée (mol/L)", min_value=0.0, value=0.1)
         m_mol_l = st.number_input("Masse molaire (g/mol)", min_value=0.0, value=98.08)
         v_prelev = (target_c * v_sol * m_mol_l) / (purete * d)
+        m_prelev = (target_c * v_sol * m_mol_l) / (purete)
     
     st.metric("Volume à prélever", f"{v_prelev:.2f} mL")
+    st.metric("Masse à prélever", f"{m_prelev:.2f} g")
 
 # --- 3. MODULE DILUTION ---
 elif choix == "Dilution (Mère/Fille)":
