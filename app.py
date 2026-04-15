@@ -8,7 +8,7 @@ st.markdown("---")
 
 # Menu principal
 menu = ["Solides", "Liquides", "Dilution (Mère/Fille)"]
-choix = st.sidebar.selectbox("Action à réaliser :", menu)
+choix = st.sidebar.selectbox("Espèce à prélever :", menu)
 
 # --- 1. MODULE SOLIDES ---
 if choix == "Solides":
@@ -18,10 +18,10 @@ if choix == "Solides":
     v = st.number_input("Volume final souhaité (L)", min_value=0.0, value=0.100, step=0.01, format="%.3f")
     
     if mode == "Concentration Massique (g/L)":
-        cm = st.number_input("Conc. massique visée (g/L)", min_value=0.0, value=10.0)
+        cm = st.number_input("Concentration massique demandée (g/L)", min_value=0.0, value=10.0)
         masse = cm * v
     else:
-        c = st.number_input("Conc. molaire visée (mol/L)", min_value=0.0, value=0.1, format="%.4f")
+        c = st.number_input("Concentration molaire demandée (mol/L)", min_value=0.0, value=0.1, format="%.4f")
         m_mol = st.number_input("Masse molaire du solide (g/mol)", min_value=0.0, value=58.44)
         masse = c * v * m_mol
     
@@ -36,13 +36,13 @@ elif choix == "Liquides":
     purete = st.number_input("Pureté (ex: 37% -> taper 37)", min_value=0.0, max_value=100.0, value=98.0) / 100
     d = st.number_input("Densité ou Masse volumique (g/mL)", min_value=0.0, value=1.84)
     
-    mode_l = st.radio("Cible :", ["Massique (g/L)", "Molaire (mol/L)"])
+    mode_l = st.radio("Concentration demandée :", ["Concentration massique (g/L)", "Concentration molaire (mol/L)"])
     
-    if mode_l == "Massique (g/L)":
-        target_cm = st.number_input("Conc. massique visée (g/L)", min_value=0.0, value=5.0)
+    if mode_l == "Concentration massique (g/L)":
+        target_cm = st.number_input("Concentration massique demandée (g/L)", min_value=0.0, value=5.0)
         v_prelev = (target_cm * v_sol) / (purete * d)
     else:
-        target_c = st.number_input("Conc. molaire visée (mol/L)", min_value=0.0, value=0.1)
+        target_c = st.number_input("Concentration molaire demandée (mol/L)", min_value=0.0, value=0.1)
         m_mol_l = st.number_input("Masse molaire (g/mol)", min_value=0.0, value=98.08)
         v_prelev = (target_c * v_sol * m_mol_l) / (purete * d)
     
