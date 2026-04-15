@@ -48,13 +48,16 @@ elif choix == "Liquide":
         v_prelev = (target_c * v_sol * m_mol_l) / (purete * d)
         m_prelev = (target_c * v_sol * m_mol_l) / (purete)
 
-    col1, col2, col3 = st.columns([1, 1, 3])
+    col1, col2, col3 = st.columns([3,2,3], gap="small", vertical_alignment="center")
 
     with col1:
         st.metric("Volume à prélever :" , f"{v_prelev:.2f} mL")
 
     with col2:
-        st.markdown("<div style='text-align:center; margin-top:5px;'><h2 style='font-size:10px; font-weight:bold;'>OU</h2></div>", unsafe_allow_html=True)
+        st.markdown("""<div style='text-align: center; margin-top: -15px;'>
+            <span style='font-size: 22px; font-weight: bold; color: #1f77b4;'>OU</span>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col3:
         st.metric("Masse à prélever :", f"{m_prelev:.2f} g")
