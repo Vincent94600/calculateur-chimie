@@ -53,13 +53,13 @@ elif choix == "Dilution (Mère/Fille)":
     st.header("🧪 Dilution de solution")
     unit = st.radio("Concentration demandée :", ["Concentration MASSIQUE (g/L)", "Concentration MOLAIRE (mol/L)"])
     
-    c_mere = st.number_input(f"Concentration Mère ({unit})", min_value=0.0001, value=1.0)
-    c_fille = st.number_input(f"Concentration Fille ({unit})", min_value=0.0001, value=0.1)
-    v_fille = st.number_input("Volume Fille souhaité (mL)", min_value=0.0, value=100.0)
+    c_mere = st.number_input(f"{unit} de la solution MÈRE", min_value=0.0001, value=1.0)
+    c_fille = st.number_input(f"{unit} de la solution FILLE", min_value=0.0001, value=0.1)
+    v_fille = st.number_input("Volume FILLE souhaité (mL)", min_value=0.0, value=100.0)
     
     if c_fille >= c_mere:
         st.error("La fille doit être moins concentrée que la mère !")
     else:
         v_mere = (c_fille * v_fille) / c_mere
-        st.metric("Volume Mère à prélever", f"{v_mere:.2f} mL")
+        st.metric("Volume MÈRE à prélever", f"{v_mere:.2f} mL")
         st.write(f"👉 Verser {v_mere:.2f} mL de mère et compléter jusqu'à {v_fille} mL.")
