@@ -54,7 +54,7 @@ elif choix == "Liquide":
         st.metric("Volume à prélever :" , f"{v_prelev:.2f} mL")
 
     with col2:
-        st.markdown("<div style='text-align:center; margin-top:5px;'><h2 style='font-size:30px; font-weight:bold;'>OU</h2></div>", unsafe_allow_html=True)
+        st.markdown("<div style='text-align:center; margin-top:5px;'><h2 style='font-size:10px; font-weight:bold;'>OU</h2></div>", unsafe_allow_html=True)
 
     with col3:
         st.metric("Masse à prélever :", f"{m_prelev:.2f} g")
