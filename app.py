@@ -7,11 +7,11 @@ st.title("🧪 Assistant de Labo")
 st.markdown("---")
 
 # Menu principal
-menu = ["Solides", "Liquides", "Dilution (Mère/Fille)"]
+menu = ["Solide", "Liquide", "Dilution (Mère/Fille)"]
 choix = st.sidebar.selectbox("Espèce à prélever :", menu)
 
 # --- 1. MODULE SOLIDES ---
-if choix == "Solides":
+if choix == "Solide":
     st.header("⚖️ Préparation par pesée")
     mode = st.radio("Donnée connue :", ["Concentration Massique (g/L)", "Concentration Molaire (mol/L)"])
     
@@ -28,7 +28,7 @@ if choix == "Solides":
     st.metric("Masse à peser", f"{masse:.4f} g")
 
 # --- 2. MODULE LIQUIDES ---
-elif choix == "Liquides":
+elif choix == "Liquide":
     st.header("💧 Prélèvement de liquide pur")
     st.info("Utilisé pour les acides concentrés ou solvants.")
     
