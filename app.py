@@ -50,13 +50,13 @@ elif choix == "Liquide":
 
     col1, col2, col3 = st.columns([4, 1, 4])
 
-with col1:
+    with col1:
     st.metric("Volume à prélever :" , f"{v_prelev:.2f} mL")
 
-with col2:
+    with col2:
     st.markdown("<br><p style='text-align:center;'>OU</p>", unsafe_allow_html=True)
 
-with col3:
+    with col3:
     st.metric("Masse à prélever :", f"{m_prelev:.2f} g")
     
     st.metric("Volume à prélever :" , f"{v_prelev:.2f} mL")
