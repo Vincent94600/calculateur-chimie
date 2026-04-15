@@ -13,11 +13,11 @@ choix = st.sidebar.selectbox("Espèce à prélever :", menu)
 # --- 1. MODULE SOLIDES ---
 if choix == "Solide":
     st.header("⚖️ Préparation par pesée")
-    mode = st.radio("Donnée connue :", ["Concentration Massique (g/L)", "Concentration Molaire (mol/L)"])
+    mode = st.radio("Concentration demandée :", ["Concentration MASSIQUE (g/L)", "Concentration MOLAIRE (mol/L)"])
     
     v = st.number_input("Volume final souhaité (L)", min_value=0.0, value=0.100, step=0.01, format="%.3f")
     
-    if mode == "Concentration Massique (g/L)":
+    if mode == "Concentration MASSIQUE (g/L)":
         cm = st.number_input("Concentration massique demandée (g/L)", min_value=0.0, value=10.0)
         masse = cm * v
     else:
@@ -36,9 +36,9 @@ elif choix == "Liquide":
     purete = st.number_input("Pureté (ex: 37% -> taper 37)", min_value=0.0, max_value=100.0, value=98.0) / 100
     d = st.number_input("Densité ou Masse volumique (g/mL)", min_value=0.0, value=1.84)
     
-    mode_l = st.radio("Concentration demandée :", ["Concentration massique (g/L)", "Concentration molaire (mol/L)"])
+    mode_l = st.radio("Concentration demandée :", ["Concentration MASSIQUE (g/L)", "Concentration MOLAIRE (mol/L)"])
     
-    if mode_l == "Concentration massique (g/L)":
+    if mode_l == "Concentration MASSIQUE (g/L)":
         target_cm = st.number_input("Concentration massique demandée (g/L)", min_value=0.0, value=5.0)
         v_prelev = (target_cm * v_sol) / (purete * d)
     else:
@@ -51,7 +51,7 @@ elif choix == "Liquide":
 # --- 3. MODULE DILUTION ---
 elif choix == "Dilution (Mère/Fille)":
     st.header("🧪 Dilution de solution")
-    unit = st.radio("Unité utilisée :", ["g/L", "mol/L"])
+    unit = st.radio("Concentration demandée :", ["Concentration MASSIQUE (g/L)", "Concentration MOLAIRE (mol/L)"])
     
     c_mere = st.number_input(f"Concentration Mère ({unit})", min_value=0.0001, value=1.0)
     c_fille = st.number_input(f"Concentration Fille ({unit})", min_value=0.0001, value=0.1)
