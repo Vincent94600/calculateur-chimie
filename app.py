@@ -49,7 +49,7 @@ elif choix == "Liquide":
         m_prelev = (target_c * v_sol * m_mol_l) / (purete)
     
     st.metric("Volume à prélever :" , f"{v_prelev:.2f} mL")
-    st.write(#"OU")
+    st.write("#OU")
     st.metric("Masse à prélever", f"{m_prelev:.2f} g")
 
 # --- 3. MODULE DILUTION ---
